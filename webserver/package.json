@@ -1,0 +1,29 @@
+{
+  "name": "simple-node-api",
+  "version": "1.0.0",
+  "description": "A simple Node.js API",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node_modules/.bin/nodemon src/app.js --exec babel-node --",
+    "clean": "rm -rf build && mkdir build",
+    "prebuild": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run prebuild"
+  },
+  "keywords": [],
+  "author": "arthurolvmorais@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.0",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "engines": {
+    "node": "10.x"
+  }
+}
