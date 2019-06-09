@@ -34,4 +34,5 @@ Você tem três opções para integrar o projeto com a api que usamos no curso:
 
 ## Fazendo deploy da API no heroku
 - Acesse a pasta webserver;
+- Renomeie o arquivo .env.example para .env
 - Há um tutorial de como fazer o deploy no Heroku explicando passo a passo, recomendo que siga esse tutorial e o projeto irá rodar perfeitamente. [[Link para o tutorial]](https://appdividend.com/2018/04/14/how-to-deploy-nodejs-app-to-heroku/);
