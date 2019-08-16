@@ -40,8 +40,8 @@ import { mapActions } from 'vuex'
 export default {
   data: () => ({
     form: {
-      email: '',
-      password: ''
+      email: 'dlowy12@google.co.uk',
+      password: 'xtPqmEFaip2'
     }
   }),
   methods: {
