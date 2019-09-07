@@ -19,9 +19,10 @@ export default function (App) {
   App.delete('/user/serie/watchlist/:id', AuthController.validateSession, UsersController.removeSerieWatchlist)
   App.post('/user/serie/watched', AuthController.validateSession, UsersController.addSerieWatchedlist)
   App.delete('/user/serie/watched/:id', AuthController.validateSession, UsersController.removeSerieWatchedlist)
-  
+
   App.get('/serie', AuthController.validateSession, SeriesController.list)
   App.post('/serie', AuthController.validateSession, SeriesController.create)
+  App.get('/serie/:id', AuthController.validateSession, SeriesController.find)
   App.put('/serie/:id', AuthController.validateSession, SeriesController.update)
   App.delete('/serie/:id', AuthController.validateSession, SeriesController.delete)
 }

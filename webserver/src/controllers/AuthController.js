@@ -11,7 +11,7 @@ export default {
       user.email === email && user.password === password
     ))[0]
 
-    if (!!user) {      
+    if (user) {
       const token = JWT.sign(user, SECRET, {
         expiresIn: 7200
       })
@@ -47,6 +47,11 @@ export default {
     const token = req.headers.authorization.split(' ')[1]
 
     JWT.verify(token, SECRET, (err, decoded) => {
+      if (err) {
+        res.status(401).send({ message: 'Sua sessão é inválida ou está expirada' })
+        return
+      }
+
       res.status(200).send({
         token,
         user: decoded

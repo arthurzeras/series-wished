@@ -1,8 +1,6 @@
 import FS from 'fs'
 
-const users = require('../../__mocks__/users.json')
 const series = require('../../__mocks__/series.json')
-const relations = require('../../__mocks__/relations.json')
 
 export default {
   list (req, res) {
@@ -26,6 +24,18 @@ export default {
       data: payload,
       message: 'Cadastro realizado com sucesso'
     })
+  },
+  find (req, res) {
+    const { id } = req.params
+
+    const serie = series.filter(serie => +serie.id === +id)[0]
+
+    if (!serie) {
+      res.status(400).send({ message: 'Nenhuma série com este id foi encontrada' })
+      return
+    }
+
+    res.status(200).send({ data: serie })
   },
   update (req, res) {
     const { title } = req.body
