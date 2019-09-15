@@ -1,10 +1,28 @@
 import FS from 'fs'
 
 const series = require('../../__mocks__/series.json')
+const relations = require('../../__mocks__/relations.json')
 
 export default {
   list (req, res) {
-    res.status(200).send({ data: series })
+    const userLogged = req.data.id
+
+    const data = series.map(serie => {
+      serie.watched = false
+      serie.watchlist = false
+
+      const rel = relations.filter(rel => (
+        +rel.serieId === +serie.id && +userLogged === rel.userId
+      ))[0]
+
+      if (rel) {
+        serie[rel.type] = true
+      }
+
+      return serie
+    })
+
+    res.status(200).send({ data })
   },
   create (req, res) {
     const { title } = req.body
