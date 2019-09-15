@@ -1,13 +1,13 @@
 <template>
   <div class="container-fluid">
-    <h1 class="mt-3">Watchlist</h1>
+    <h1 class="mt-3">Watchedlist</h1>
     <hr>
 
     <div class="row">
       <div
         class="col-3"
         :key="item.id"
-        v-for="item in watchlist"
+        v-for="item in watchedlist"
       >
         <serie-box :serie="item" />
       </div>
@@ -20,18 +20,18 @@ import { mapActions, mapState } from 'vuex'
 import SerieBox from '@/components/SerieBox'
 
 export default {
-  name: 'Watchlist',
+  name: 'Watchedlist',
   components: {
     SerieBox
   },
   mounted () {
-    this.ActionFindWatchlist()
+    this.ActionFindWatchedlist()
   },
   computed: {
-    ...mapState('watchlist', ['watchlist'])
+    ...mapState('watchedlist', ['watchedlist'])
   },
   methods: {
-    ...mapActions('watchlist', ['ActionFindWatchlist'])
+    ...mapActions('watchedlist', ['ActionFindWatchedlist'])
   }
 }
 </script>

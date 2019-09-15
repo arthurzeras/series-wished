@@ -1,6 +1,6 @@
 <template>
   <router-link
-    class="card"
+    class="card mb-4"
     :to="{ name: 'show-serie', params: { id: serie.id } }"
   >
     <img
@@ -13,6 +13,18 @@
       <h3 class="text-center mb-0">
         {{ serie.title }}
       </h3>
+      <div class="row text-center mt-3">
+        <div class="col">
+          <button class="btn btn-sm btn-outline-primary" @click="toggleWatchlist()">
+            {{ serie.watchlist ? 'Remover da' : 'Adicionar na' }} watchlist
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-sm btn-outline-warning" @click="toggleWatchedlist()">
+            {{ serie.watched ? 'Remover da' : 'Adicionar na' }} watchedlist
+          </button>
+        </div>
+      </div>
     </div>
   </router-link>
 </template>
@@ -21,6 +33,22 @@
 export default {
   props: {
     serie: { type: Object, required: true }
+  },
+  methods: {
+    toggleWatchlist () {
+      if (this.serie.watchlist) {
+        console.log('Remover da watchlist')
+      } else {
+        console.log('Adicionar na watchlist')
+      }
+    },
+    toggleWatchedlist () {
+      if (this.serie.watchlist) {
+        console.log('Remover da watchedlist')
+      } else {
+        console.log('Adicionar na watchedlist')
+      }
+    }
   }
 }
 </script>

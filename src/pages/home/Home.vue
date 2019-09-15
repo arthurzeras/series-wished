@@ -17,15 +17,6 @@
         </i>
         <span>{{ route.meta.label }}</span>
       </router-link>
-
-      <a href="#" class="home-link">
-        <i class="material-icons md-48">playlist_add_check</i>
-        <span>Já assisti</span>
-      </a>
-      <a href="#" class="home-link">
-        <i class="material-icons md-48">dvr</i>
-        <span>Todas séries</span>
-      </a>
     </div>
 
     <button class="btn btn-exit">
