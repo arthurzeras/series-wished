@@ -34,13 +34,14 @@ function addDataOnRelations ({ serieId, userId, type }) {
     })
   } else {
     relations.push({
-      serieId, userId, type,
+      type,
+      userId,
+      serieId,
       id: relations.length + 1
     })
 
     payload = relations
   }
-
 
   FS.writeFileSync('__mocks__/relations.json', JSON.stringify(payload))
 
@@ -58,7 +59,7 @@ export default {
     res.status(200).send({ data: filterByType(req.data.id, 'watchlist') })
   },
   watchedlistUserLogged (req, res) {
-    res.status(200).send({ data: filterByType(req.params.id, 'watched') })
+    res.status(200).send({ data: filterByType(req.data.id, 'watched') })
   },
   addSerieWatchlist (req, res) {
     const { serieId } = req.body
