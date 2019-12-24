@@ -6,7 +6,14 @@ const relations = require('../../__mocks__/relations.json')
 function filterByType (userId, type) {
   return relations
     .filter(item => (+item.userId === +userId && item.type === type))
-    .map(item => series.filter(serie => serie.id === item.serieId)[0])
+    .map(item => {
+      const serie = series.filter(serie => serie.id === item.serieId)[0]
+
+      serie.watched = type === 'watched'
+      serie.watchlist = type === 'watchlist'
+
+      return serie
+    })
 }
 
 function addDataOnRelations ({ serieId, userId, type }) {
@@ -83,7 +90,7 @@ export default {
   },
   removeSerieWatchlist (req, res) {
     const { id } = req.params
-    const rel = relations.filter(rel => +rel.id === +id && rel.userId === req.data.id)[0]
+    const rel = relations.filter(rel => +rel.serieId === +id && rel.userId === req.data.id)[0]
 
     if (!rel) {
       res.status(400).send({
@@ -123,7 +130,7 @@ export default {
   },
   removeSerieWatchedlist (req, res) {
     const { id } = req.params
-    const rel = relations.filter(rel => +rel.id === +id && rel.userId === req.data.id)[0]
+    const rel = relations.filter(rel => +rel.serieId === +id && rel.userId === req.data.id)[0]
 
     if (!rel) {
       res.status(400).send({
