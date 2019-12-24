@@ -15,12 +15,12 @@
       </h3>
       <div class="row text-center mt-3">
         <div class="col">
-          <button class="btn btn-sm btn-outline-primary" @click="toggleWatchlist()">
+          <button class="btn btn-sm btn-outline-primary" @click.prevent="toggleWatchlist()">
             {{ serie.watchlist ? 'Remover da' : 'Adicionar na' }} watchlist
           </button>
         </div>
         <div class="col">
-          <button class="btn btn-sm btn-outline-warning" @click="toggleWatchedlist()">
+          <button class="btn btn-sm btn-outline-warning" @click.prevent="toggleWatchedlist()">
             {{ serie.watched ? 'Remover da' : 'Adicionar na' }} watchedlist
           </button>
         </div>
@@ -30,24 +30,80 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   props: {
     serie: { type: Object, required: true }
   },
   methods: {
-    toggleWatchlist () {
-      if (this.serie.watchlist) {
-        console.log('Remover da watchlist')
-      } else {
-        console.log('Adicionar na watchlist')
+    ...mapActions('series', ['ActionFindSerieslist']),
+    ...mapActions('watchedlist', [
+      'ActionFindWatchedlist',
+      'ActionAddOnWatchedlist',
+      'ActionDeleteFromWatchedlist'
+    ]),
+    ...mapActions('watchlist', [
+      'ActionFindWatchlist',
+      'ActionAddOnWatchlist',
+      'ActionDeleteFromWatchlist'
+    ]),
+    async toggleWatchlist () {
+      try {
+        if (this.serie.watched) {
+          await this.ActionDeleteFromWatchedlist(this.serie.id)
+        }
+
+        if (this.serie.watchlist) {
+          await this.ActionDeleteFromWatchlist(this.serie.id)
+
+          window.alert('Deletada com sucesso')
+        } else {
+          await this.ActionAddOnWatchlist({ serieId: this.serie.id })
+
+          window.alert('Adicionada com sucesso')
+        }
+
+        this.refresh()
+      } catch (error) {
+        window.alert('Ocorreu algum erro')
+        console.error(error)
       }
     },
-    toggleWatchedlist () {
-      if (this.serie.watchlist) {
-        console.log('Remover da watchedlist')
-      } else {
-        console.log('Adicionar na watchedlist')
+    async toggleWatchedlist () {
+      try {
+        if (this.serie.watchlist) {
+          await this.ActionDeleteFromWatchlist(this.serie.id)
+        }
+
+        if (this.serie.watched) {
+          await this.ActionDeleteFromWatchedlist(this.serie.id)
+
+          window.alert('Deletada com sucesso')
+        } else {
+          await this.ActionAddOnWatchedlist({ serieId: this.serie.id })
+
+          window.alert('Adicionada com sucesso')
+        }
+
+        this.refresh()
+      } catch (error) {
+        window.alert('Ocorreu algum erro')
+        console.error(error)
       }
+    },
+    refresh () {
+      const { name } = this.$route
+
+      if (name === 'series') {
+        return this.ActionFindSerieslist()
+      }
+
+      if (name === 'watchedlist') {
+        return this.ActionFindWatchedlist()
+      }
+
+      return this.ActionFindWatchlist()
     }
   }
 }
