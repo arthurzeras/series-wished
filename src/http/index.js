@@ -7,7 +7,7 @@ Vue.use(VueResource)
 
 const http = Vue.http
 
-http.options.root = 'https://localhost:5000/'
+http.options.root = 'http://localhost:5000/'
 
 http.interceptors.push(interceptors)
 
