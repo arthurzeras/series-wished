@@ -3,13 +3,13 @@
 Este é um projeto para controle de lista de desejo de séries de tv usando Vue.js, está sendo ministrado em meu canal do Youtube. O foco é em consumir uma API Rest e manter a sessão usando o token JWT.
 
 ## Tecnologias utilizadas:
-  - Node.js: v.10.15.0
-  - NPM: v.6.4.1
-  - Vue CLI: v.3.2.1
-  - Vue.js: v.2.6.10
-  - Vuex: v.3.0.1
-  - Vue Router: v.3.0.3
-  - Vue Resource: v.1.5.1
+  - [Node.js](https://nodejs.org)
+  - [NPM](https://www.npmjs.com/)
+  - [Vue CLI](https://cli.vuejs.org/)
+  - [Vue.js](https://vuejs.org/)
+  - [Vuex](https://vuex.vuejs.org/)
+  - [Vue Router](https://router.vuejs.org/)
+  - [Vue Resource](https://github.com/pagekit/vue-resource)
 
 
 ### Instalando as dependências e rodando o projeto:
